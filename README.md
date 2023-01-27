@@ -1,2 +1,2 @@
 # dScreener
-Crypto Screener
+Crypto Screener UI
