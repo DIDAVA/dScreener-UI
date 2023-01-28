@@ -138,8 +138,8 @@ export default {
   data: () => ({
     pulse: false,
     sort: {
-      buy: 14,
-      sell: 14
+      buy: 16,
+      sell: 16
     }
   }),
   computed: {
