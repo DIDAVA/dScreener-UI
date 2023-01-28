@@ -145,14 +145,14 @@ export default {
   computed: {
     ...mapState(['payload', 'tv', 'cache']),
     buyList(){
-      return this.tv.data.filter(i => i.d[15] < 50).sort((a,b) => {
+      return this.tv.data.filter(i => i.d[16] < 50).sort((a,b) => {
         const av = a.d[this.sort.buy]
         const bv = b.d[this.sort.buy]
         return av > bv ? 1 : av < bv ? -1 : 0
       })
     },
     sellList(){
-      return this.tv.data.filter(i => i.d[15] > 50).sort((a, b) => {
+      return this.tv.data.filter(i => i.d[16] > 50).sort((a, b) => {
         const av = a.d[this.sort.sell]
         const bv = b.d[this.sort.sell]
         return av > bv ? -1 : av < bv ? 1 : 0
