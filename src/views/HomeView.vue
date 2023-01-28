@@ -36,18 +36,30 @@
             <tr v-for="item, index in buyList" :key="index">
               <td class="font-weight-bold">{{ item.d[0] }}</td>
               <td>{{ item.d[3] }}</td>
-              <td :class="changeColor(item.d[6])">{{ item.d[6].toFixed(2) }}%</td>
-              <td :class="changeColor(item.d[7])">{{ item.d[7].toFixed(2) }}%</td>
-              <td :class="vol24mcColor(item.d[9])">{{ item.d[9].toFixed(2) }}</td>
-              <td :class="vol24Color(item.d[10])">{{ item.d[10].toFixed(2) }}%</td>
-              <td :class="volatilityColor(item.d[11])">{{ item.d[11].toFixed(2) }}%</td>
-              <td :class="buyRsiColor(item.d[12])">{{ item.d[12].toFixed(2) }}</td>
-              <td :class="buyRsiColor(item.d[13])">{{ item.d[13].toFixed(2) }}</td>
-              <td :class="buyRsiColor(item.d[14])">{{ item.d[14].toFixed(2) }}</td>
-              <td :class="buyRsiColor(item.d[15])">{{ item.d[15].toFixed(2) }}</td>
-              <td :class="buyRsiColor(item.d[16])">{{ item.d[16].toFixed(2) }}</td>
-              <td :class="buyRsiColor(item.d[17])">{{ item.d[17].toFixed(2) }}</td>
-              <td :class="buyRsiColor(item.d[18])">{{ item.d[18].toFixed(2) }}</td>
+              <td v-if="item.d[6]" :class="changeColor(item.d[6])">{{ item.d[6].toFixed(2) }}%</td>
+              <td v-else>--</td>
+              <td v-if="item.d[7]" :class="changeColor(item.d[7])">{{ item.d[7].toFixed(2) }}%</td>
+              <td v-else>--</td>
+              <td v-if="item.d[9]" :class="vol24mcColor(item.d[9])">{{ item.d[9].toFixed(2) }}</td>
+              <td v-else>--</td>
+              <td v-if="item.d[10]" :class="vol24Color(item.d[10])">{{ item.d[10].toFixed(2) }}%</td>
+              <td v-else>--</td>
+              <td v-if="item.d[11]" :class="volatilityColor(item.d[11])">{{ item.d[11].toFixed(2) }}%</td>
+              <td v-else>--</td>
+              <td v-if="item.d[12]" :class="buyRsiColor(item.d[12])">{{ item.d[12].toFixed(2) }}</td>
+              <td v-else>--</td>
+              <td v-if="item.d[13]" :class="buyRsiColor(item.d[13])">{{ item.d[13].toFixed(2) }}</td>
+              <td v-else>--</td>
+              <td v-if="item.d[14]" :class="buyRsiColor(item.d[14])">{{ item.d[14].toFixed(2) }}</td>
+              <td v-else>--</td>
+              <td v-if="item.d[15]" :class="buyRsiColor(item.d[15])">{{ item.d[15].toFixed(2) }}</td>
+              <td v-else>--</td>
+              <td v-if="item.d[16]" :class="buyRsiColor(item.d[16])">{{ item.d[16].toFixed(2) }}</td>
+              <td v-else>--</td>
+              <td v-if="item.d[17]" :class="buyRsiColor(item.d[17])">{{ item.d[17].toFixed(2) }}</td>
+              <td v-else>--</td>
+              <td v-if="item.d[18]" :class="buyRsiColor(item.d[18])">{{ item.d[18].toFixed(2) }}</td>
+              <td v-else>--</td>
             </tr>
           </tbody>
         </template>
@@ -85,18 +97,30 @@
             <tr v-for="item, index in sellList" :key="index">
               <td class="font-weight-bold">{{ item.d[0] }}</td>
               <td>{{ item.d[3] }}</td>
-              <td :class="changeColor(item.d[6])">{{ item.d[6].toFixed(2) }}%</td>
-              <td :class="changeColor(item.d[7])">{{ item.d[7].toFixed(2) }}%</td>
-              <td :class="vol24mcColor(item.d[9])">{{ item.d[9].toFixed(2) }}</td>
-              <td :class="vol24Color(item.d[10])">{{ item.d[10].toFixed(2) }}%</td>
-              <td :class="volatilityColor(item.d[11])">{{ item.d[11].toFixed(2) }}%</td>
-              <td :class="sellRsiColor(item.d[12])">{{ item.d[12].toFixed(2) }}</td>
-              <td :class="sellRsiColor(item.d[13])">{{ item.d[13].toFixed(2) }}</td>
-              <td :class="sellRsiColor(item.d[14])">{{ item.d[14].toFixed(2) }}</td>
-              <td :class="sellRsiColor(item.d[15])">{{ item.d[15].toFixed(2) }}</td>
-              <td :class="sellRsiColor(item.d[16])">{{ item.d[16].toFixed(2) }}</td>
-              <td :class="sellRsiColor(item.d[17])">{{ item.d[17].toFixed(2) }}</td>
-              <td :class="sellRsiColor(item.d[18])">{{ item.d[18].toFixed(2) }}</td>
+              <td v-if="item.d[6]" :class="changeColor(item.d[6])">{{ item.d[6].toFixed(2) }}%</td>
+              <td v-else>--</td>
+              <td v-if="item.d[7]" :class="changeColor(item.d[7])">{{ item.d[7].toFixed(2) }}%</td>
+              <td v-else>--</td>
+              <td v-if="item.d[9]" :class="vol24mcColor(item.d[9])">{{ item.d[9].toFixed(2) }}</td>
+              <td v-else>--</td>
+              <td v-if="item.d[10]" :class="vol24Color(item.d[10])">{{ item.d[10].toFixed(2) }}%</td>
+              <td v-else>--</td>
+              <td v-if="item.d[11]" :class="volatilityColor(item.d[11])">{{ item.d[11].toFixed(2) }}%</td>
+              <td v-else>--</td>
+              <td v-if="item.d[12]" :class="sellRsiColor(item.d[12])">{{ item.d[12].toFixed(2) }}</td>
+              <td v-else>--</td>
+              <td v-if="item.d[13]" :class="sellRsiColor(item.d[13])">{{ item.d[13].toFixed(2) }}</td>
+              <td v-else>--</td>
+              <td v-if="item.d[14]" :class="sellRsiColor(item.d[14])">{{ item.d[14].toFixed(2) }}</td>
+              <td v-else>--</td>
+              <td v-if="item.d[15]" :class="sellRsiColor(item.d[15])">{{ item.d[15].toFixed(2) }}</td>
+              <td v-else>--</td>
+              <td v-if="item.d[16]" :class="sellRsiColor(item.d[16])">{{ item.d[16].toFixed(2) }}</td>
+              <td v-else>--</td>
+              <td v-if="item.d[17]" :class="sellRsiColor(item.d[17])">{{ item.d[17].toFixed(2) }}</td>
+              <td v-else>--</td>
+              <td v-if="item.d[18]" :class="sellRsiColor(item.d[18])">{{ item.d[18].toFixed(2) }}</td>
+              <td v-else>--</td>
             </tr>
           </tbody>
         </template>
@@ -117,16 +141,16 @@ export default {
   computed: {
     ...mapState(['payload', 'tv', 'cache']),
     buyList(){
-      return this.tv.data.filter(i => i.d[17] < 50).sort((a,b) => {
-        const av = a.d[17]
-        const bv = b.d[17]
+      return this.tv.data.filter(i => i.d[16] < 50).sort((a,b) => {
+        const av = a.d[16]
+        const bv = b.d[16]
         return av > bv ? 1 : av < bv ? -1 : 0
       })
     },
     sellList(){
-      return this.tv.data.filter(i => i.d[17] > 50).sort((a, b) => {
-        const av = a.d[17]
-        const bv = b.d[17]
+      return this.tv.data.filter(i => i.d[16] > 50).sort((a, b) => {
+        const av = a.d[16]
+        const bv = b.d[16]
         return av > bv ? -1 : av < bv ? 1 : 0
       })
     }
