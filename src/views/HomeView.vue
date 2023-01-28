@@ -27,7 +27,9 @@
               <th>RSI 30m</th>
               <th>RSI 1H</th>
               <th>RSI 4H</th>
-              <th>RSI 1D</th>
+              <th>RSI D</th>
+              <th>RSI W</th>
+              <th>RSI M</th>
             </tr>
           </thead>
           <tbody>
@@ -44,6 +46,8 @@
               <td :class="buyRsiColor(item.d[14])">{{ item.d[14].toFixed(2) }}</td>
               <td :class="buyRsiColor(item.d[15])">{{ item.d[15].toFixed(2) }}</td>
               <td :class="buyRsiColor(item.d[16])">{{ item.d[16].toFixed(2) }}</td>
+              <td :class="buyRsiColor(item.d[17])">{{ item.d[17].toFixed(2) }}</td>
+              <td :class="buyRsiColor(item.d[18])">{{ item.d[18].toFixed(2) }}</td>
             </tr>
           </tbody>
         </template>
@@ -72,7 +76,9 @@
               <th>RSI 30m</th>
               <th>RSI 1H</th>
               <th>RSI 4H</th>
-              <th>RSI 1D</th>
+              <th>RSI D</th>
+              <th>RSI W</th>
+              <th>RSI M</th>
             </tr>
           </thead>
           <tbody>
@@ -89,6 +95,8 @@
               <td :class="sellRsiColor(item.d[14])">{{ item.d[14].toFixed(2) }}</td>
               <td :class="sellRsiColor(item.d[15])">{{ item.d[15].toFixed(2) }}</td>
               <td :class="sellRsiColor(item.d[16])">{{ item.d[16].toFixed(2) }}</td>
+              <td :class="sellRsiColor(item.d[17])">{{ item.d[17].toFixed(2) }}</td>
+              <td :class="sellRsiColor(item.d[18])">{{ item.d[18].toFixed(2) }}</td>
             </tr>
           </tbody>
         </template>
@@ -109,16 +117,16 @@ export default {
   computed: {
     ...mapState(['payload', 'tv', 'cache']),
     buyList(){
-      return this.tv.data.filter(i => i.d[14] < 50).sort((a,b) => {
-        const av = a.d[14]
-        const bv = b.d[14]
+      return this.tv.data.filter(i => i.d[17] < 50).sort((a,b) => {
+        const av = a.d[17]
+        const bv = b.d[17]
         return av > bv ? 1 : av < bv ? -1 : 0
       })
     },
     sellList(){
-      return this.tv.data.filter(i => i.d[14] > 50).sort((a, b) => {
-        const av = a.d[14]
-        const bv = b.d[14]
+      return this.tv.data.filter(i => i.d[17] > 50).sort((a, b) => {
+        const av = a.d[17]
+        const bv = b.d[17]
         return av > bv ? -1 : av < bv ? 1 : 0
       })
     }
