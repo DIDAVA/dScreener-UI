@@ -5,7 +5,7 @@
       <v-spacer/>
     </h1>
     <div>dScreener tries to find the best trading opportunities in crypto market.</div>
-    <v-card v-if="payload && tv" flat color="blue-grey darken-4" class="mt-4">
+    <v-card v-if="payload && tv" flat color="c2" class="mt-4">
       <v-card-title>
         <span>Buy Oportuninties</span>
         <v-spacer/>
@@ -18,18 +18,18 @@
             <tr class="font-weight-bold">
               <th>Symbol</th>
               <th>Close</th>
-              <th>Change</th>
-              <th>Change 24H</th>
-              <th>Vol24H/MCap</th>
-              <th>Vol24H Change</th>
-              <th>Volatility</th>
-              <th>RSI 15m</th>
-              <th>RSI 30m</th>
-              <th>RSI 1H</th>
-              <th>RSI 4H</th>
-              <th>RSI D</th>
-              <th>RSI W</th>
-              <th>RSI M</th>
+              <th @click="sort.buy = 6" :class="sort.buy == 6 ? 'high--text' : ''">Change</th>
+              <th @click="sort.buy = 7" :class="sort.buy == 7 ? 'high--text' : ''">Change 24H</th>
+              <th @click="sort.buy = 9" :class="sort.buy == 9 ? 'high--text' : ''">Vol24H/MCap</th>
+              <th @click="sort.buy = 10" :class="sort.buy == 10 ? 'high--text' : ''">Vol24H Change</th>
+              <th @click="sort.buy = 11" :class="sort.buy == 11 ? 'high--text' : ''">Volatility</th>
+              <th @click="sort.buy = 12" :class="sort.buy == 12 ? 'high--text' : ''">RSI 15m</th>
+              <th @click="sort.buy = 13" :class="sort.buy == 13 ? 'high--text' : ''">RSI 30m</th>
+              <th @click="sort.buy = 14" :class="sort.buy == 14 ? 'high--text' : ''">RSI 1H</th>
+              <th @click="sort.buy = 15" :class="sort.buy == 15 ? 'high--text' : ''">RSI 4H</th>
+              <th @click="sort.buy = 16" :class="sort.buy == 16 ? 'high--text' : ''">RSI D</th>
+              <th @click="sort.buy = 17" :class="sort.buy == 17 ? 'high--text' : ''">RSI W</th>
+              <th @click="sort.buy = 18" :class="sort.buy == 18 ? 'high--text' : ''">RSI M</th>
             </tr>
           </thead>
           <tbody>
@@ -64,9 +64,9 @@
           </tbody>
         </template>
       </v-simple-table>
-      <div v-else class="text-center pa-4">Searching the market ...</div>
+      <div v-else class="text-center pa-4 c4--text">Searching the market ...</div>
     </v-card>
-    <v-card v-if="payload && tv" flat color="blue-grey darken-4" class="mt-4">
+    <v-card v-if="payload && tv" flat color="c2" class="mt-4">
       <v-card-title>
         <span>Sell Oportuninties</span>
         <v-spacer/>
@@ -79,18 +79,18 @@
             <tr class="font-weight-bold">
               <th>Symbol</th>
               <th>Close</th>
-              <th>Change</th>
-              <th>Change 24H</th>
-              <th>Vol24H/MCap</th>
-              <th>Vol24H Change</th>
-              <th>Volatility</th>
-              <th>RSI 15m</th>
-              <th>RSI 30m</th>
-              <th>RSI 1H</th>
-              <th>RSI 4H</th>
-              <th>RSI D</th>
-              <th>RSI W</th>
-              <th>RSI M</th>
+              <th @click="sort.sell = 6" :class="sort.sell == 6 ? 'high--text' : ''">Change</th>
+              <th @click="sort.sell = 7" :class="sort.sell == 7 ? 'high--text' : ''">Change 24H</th>
+              <th @click="sort.sell = 9" :class="sort.sell == 9 ? 'high--text' : ''">Vol24H/MCap</th>
+              <th @click="sort.sell = 10" :class="sort.sell == 10 ? 'high--text' : ''">Vol24H Change</th>
+              <th @click="sort.sell = 11" :class="sort.sell == 11 ? 'high--text' : ''">Volatility</th>
+              <th @click="sort.sell = 12" :class="sort.sell == 12 ? 'high--text' : ''">RSI 15m</th>
+              <th @click="sort.sell = 13" :class="sort.sell == 13 ? 'high--text' : ''">RSI 30m</th>
+              <th @click="sort.sell = 14" :class="sort.sell == 14 ? 'high--text' : ''">RSI 1H</th>
+              <th @click="sort.sell = 15" :class="sort.sell == 15 ? 'high--text' : ''">RSI 4H</th>
+              <th @click="sort.sell = 16" :class="sort.sell == 16 ? 'high--text' : ''">RSI D</th>
+              <th @click="sort.sell = 17" :class="sort.sell == 17 ? 'high--text' : ''">RSI W</th>
+              <th @click="sort.sell = 18" :class="sort.sell == 18 ? 'high--text' : ''">RSI M</th>
             </tr>
           </thead>
           <tbody>
@@ -125,7 +125,7 @@
           </tbody>
         </template>
       </v-simple-table>
-      <div v-else class="text-center pa-4">Searching the market ...</div>
+      <div v-else class="text-center pa-4 c4--text">Searching the market ...</div>
     </v-card>
   </v-container>
 </template>
@@ -136,21 +136,25 @@ export default {
   name: 'HomeView',
   components: {},
   data: () => ({
-    pulse: false
+    pulse: false,
+    sort: {
+      buy: 15,
+      sell: 15
+    }
   }),
   computed: {
     ...mapState(['payload', 'tv', 'cache']),
     buyList(){
-      return this.tv.data.filter(i => i.d[16] < 50).sort((a,b) => {
-        const av = a.d[16]
-        const bv = b.d[16]
+      return this.tv.data.filter(i => i.d[15] < 50).sort((a,b) => {
+        const av = a.d[this.sort.buy]
+        const bv = b.d[this.sort.buy]
         return av > bv ? 1 : av < bv ? -1 : 0
       })
     },
     sellList(){
-      return this.tv.data.filter(i => i.d[16] > 50).sort((a, b) => {
-        const av = a.d[16]
-        const bv = b.d[16]
+      return this.tv.data.filter(i => i.d[15] > 50).sort((a, b) => {
+        const av = a.d[this.sort.sell]
+        const bv = b.d[this.sort.sell]
         return av > bv ? -1 : av < bv ? 1 : 0
       })
     }
