@@ -39,11 +39,11 @@
               <td :class="vol24mcColor(item.d[9])">{{ item.d[9].toFixed(2) }}</td>
               <td :class="vol24Color(item.d[10])">{{ item.d[10].toFixed(2) }}%</td>
               <td :class="volatilityColor(item.d[11])">{{ item.d[11].toFixed(2) }}%</td>
-              <td :class="sellRsiColor(item.d[12])">{{ item.d[12].toFixed(2) }}</td>
-              <td :class="sellRsiColor(item.d[13])">{{ item.d[13].toFixed(2) }}</td>
-              <td :class="sellRsiColor(item.d[14])">{{ item.d[14].toFixed(2) }}</td>
-              <td :class="sellRsiColor(item.d[15])">{{ item.d[15].toFixed(2) }}</td>
-              <td :class="sellRsiColor(item.d[16])">{{ item.d[16].toFixed(2) }}</td>
+              <td :class="buyRsiColor(item.d[12])">{{ item.d[12].toFixed(2) }}</td>
+              <td :class="buyRsiColor(item.d[13])">{{ item.d[13].toFixed(2) }}</td>
+              <td :class="buyRsiColor(item.d[14])">{{ item.d[14].toFixed(2) }}</td>
+              <td :class="buyRsiColor(item.d[15])">{{ item.d[15].toFixed(2) }}</td>
+              <td :class="buyRsiColor(item.d[16])">{{ item.d[16].toFixed(2) }}</td>
             </tr>
           </tbody>
         </template>
