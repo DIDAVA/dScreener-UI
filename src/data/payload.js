@@ -15,16 +15,11 @@ const payload = {
       "RSI|60"
   ],
   filter: [
-      //{left: 'market_cap_calc', operation: 'eless', right: 10000000},
-      //{left: "24h_close_change|5", operation: "eless", right: 0},
-      {left: "24h_vol_to_market_cap", operation: "egreater", right: 0},
-      {left: "24h_vol_change_cmc", operation: "egreater", right: 0},
-      {left: "RSI|60", operation: "eless", right: 30},
-      {left: "Volatility.D", operation: "egreater", right: 0}
+      
   ],
   sort: {
-    sortBy: "RSI|60",
-    sortOrder: "asc"
+    sortBy: "market_cap_calc",
+    sortOrder: "desc"
   },
   ignore_unknown_fields: false,
   range: [0, 100],

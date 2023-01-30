@@ -4,6 +4,7 @@ const io = require('socket.io-client')
 const development = true
 const socket = io(development ? 'http://localhost:8000' : 'https://screener.didava.ir')
 socket.on('connect', () => console.log('Socket Connected'))
+const filters = require('@/data/filters')
 
 Vue.use(Vuex)
 
@@ -11,6 +12,7 @@ export default new Vuex.Store({
   state: {
     socket,
     payload: null,
+    filters,
     tv: null,
     cache: null
   },
