@@ -91,7 +91,11 @@
       </v-col>
       <v-col v-if="payload && tv" cols="12">
         <v-card flat color="c2">
-          <v-card-title>Watchlist</v-card-title>
+          <v-card-title>
+            <span>Watchlist</span>
+            <v-spacer/>
+            <v-icon color="white" class="off" :class="pulse ? 'pulse' : ''">mdi-pulse</v-icon>
+          </v-card-title>
           <v-card-text>
             <v-select 
               dense 
@@ -114,7 +118,7 @@
             <template #default>
               <thead>
                 <tr class="font-weight-bold">
-                  <th v-for="item, index in headers" :key="'hb'+index" @click="sort.sell = item.value" :class="sort.sell == item.value ? 'high--text' : ''">{{ item.name }}</th>
+                  <th v-for="item, index in headers" :key="'hb'+index">{{ item.name }}</th>
                 </tr>
               </thead>
               <tbody>
