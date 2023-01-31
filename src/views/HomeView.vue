@@ -414,8 +414,8 @@ export default {
     rangeRsiColor(value){
       let color = 'grey'
       if (value >= 70 && value < 75 || value <= 30 && value > 25) color = 'medium'
-      else if (value >= 75) color = 'high'
-      else if (value <= 25) color = 'low'
+      else if (value >= 75) color = 'low'
+      else if (value <= 25) color = 'high'
       return `${color}--text`
     },
     saveConfig(){
