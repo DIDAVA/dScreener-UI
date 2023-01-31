@@ -113,7 +113,7 @@
             </v-select>
             <v-icon color="white" class="off" :class="pulse ? 'pulse' : ''">mdi-pulse</v-icon>
           </v-card-title>
-          
+          <v-divider/>
           <v-simple-table v-if="config.watchlist.length" class="transparent" dense>
             <template #default>
               <thead>
