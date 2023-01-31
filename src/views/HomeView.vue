@@ -359,6 +359,7 @@ export default {
     setColumn(v){
       this.sort.buy = v
       this.sort.sell = v
+      this.saveConfig()
     },
     sortASC(list, field){
       return list.sort((a,b) => {
