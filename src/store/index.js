@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 const io = require('socket.io-client')
-const development = false
-const socket = io(development ? 'http://localhost:8000' : 'https://screener.didava.ir')
+const local = true
+const socket = io(local ? 'http://localhost:8000' : 'https://screener.didava.ir')
 socket.on('connect', () => console.log('Socket Connected'))
 const filters = require('@/data/filters')
 
