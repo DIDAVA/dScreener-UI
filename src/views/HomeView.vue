@@ -91,29 +91,29 @@
       </v-col>
       <v-col v-if="payload && tv" cols="12">
         <v-card flat color="c2">
-          <v-card-title>
-            <span>Watchlist</span>
-            <v-spacer/>
-            <v-icon color="white" class="off" :class="pulse ? 'pulse' : ''">mdi-pulse</v-icon>
-          </v-card-title>
-          <v-card-text>
-            <v-select 
+          <v-card-title class="d-flex align-center">
+            <span>Watchlist</span>            
+            <v-select
               dense 
-              outlined 
+              flat
+              solo 
               chips 
               deletable-chips 
               hide-details 
               small-chips 
               multiple 
+              :items="symbols"
               v-model="config.watchlist" 
-              :items="symbols" 
-              @change="saveConfig()"
+              @change="saveConfig()" 
+              background-color="transparent"
             >
               <template #item="{item}">
                 <div class="c1">{{ item }}</div>
               </template>
             </v-select>
-          </v-card-text>
+            <v-icon color="white" class="off" :class="pulse ? 'pulse' : ''">mdi-pulse</v-icon>
+          </v-card-title>
+          
           <v-simple-table v-if="config.watchlist.length" class="transparent" dense>
             <template #default>
               <thead>
