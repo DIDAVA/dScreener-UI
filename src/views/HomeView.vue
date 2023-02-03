@@ -395,27 +395,22 @@ export default {
       return `${color}--text`
     },
     buyRsiColor(value){
-      let color
-      if (value <= 30 && value > 25) color = 'low'
-      else if (value <= 25 && value > 20) color = 'medium'
-      else if (value <= 20) color = 'high'
-      else color = 'low'
-      return `${color}--text`
+      if (value <= 30 && value > 25) return 'low--text font-weight-bold'
+      else if (value <= 25 && value > 20) return 'medium--text font-weight-bold'
+      else if (value <= 20) return 'high--text font-weight-bold'
+      else return 'grey--text text--darken-1'
     },
     sellRsiColor(value){
-      let color
-      if (value >= 70 && value < 75) color = 'low'
-      else if (value >= 75 && value < 80) color = 'medium'
-      else if (value >= 80) color = 'high'
-      else color = 'low'
-      return `${color}--text`
+      if (value >= 70 && value < 75) return 'low--text font-weight-bold'
+      else if (value >= 75 && value < 80) return 'medium--text font-weight-bold'
+      else if (value >= 80) return 'high--text font-weight-bold'
+      else return 'grey--text text--darken-1'
     },
     rangeRsiColor(value){
-      let fontClass = 'grey--text'
-      if (value >= 75 && value < 80 || value <= 25 && value > 20) fontClass = 'medium--text'
-      else if (value >= 80) fontClass = 'low--text font-weight-bold'
-      else if (value <= 20) fontClass = 'high--text font-weight-bold'
-      return fontClass
+      if (value >= 75 && value < 80 || value <= 25 && value > 20) return 'medium--text font-weight-bold'
+      else if (value >= 80) return 'low--text font-weight-bold'
+      else if (value <= 20) return 'high--text font-weight-bold'
+      else return 'grey--text text--darken-1'
     },
     saveConfig(){
       localStorage.setItem('dScreener', JSON.stringify(this.config))
