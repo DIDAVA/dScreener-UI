@@ -271,6 +271,7 @@ export default {
       {name: 'VLT.D', value: 'Volatility.D'},
       {name: 'VLT.W', value: 'Volatility.W'},
       {name: 'VLT.M', value: 'Volatility.M'},
+      {name: 'WRSI', value: 'RSI|WGT'},
       {name: '1m', value: 'RSI|1'},
       {name: '5m', value: 'RSI|5'},
       {name: '15m', value: 'RSI|15'},
@@ -317,6 +318,7 @@ export default {
         item.d.forEach((value, index) => {
           item.c[this.payload.columns[index]] = value
         })
+        item.c['RSI|WGT'] = this.wrsi(item)
         return item
       })
     },
@@ -369,6 +371,16 @@ export default {
         const bv = b.c[field]
         return av > bv ? -1 : av < bv ? 1 : 0
       })
+    },
+    wrsi(data){
+      const max = 122.291
+      let rsi = data.c['RSI']
+      rsi += data.c['RSI|240'] * (240 / 1440)
+      rsi += data.c['RSI|60'] * (60 / 1440)
+      rsi += data.c['RSI|15'] * (15 / 1440)
+      rsi += data.c['RSI|5'] * (5 / 1440)
+      rsi += data.c['RSI|1'] * (1 / 1440)
+      return parseFloat((rsi / max * 100).toFixed(2))
     },
     changeColor(value){
       if (value > 0) return 'high--text'
