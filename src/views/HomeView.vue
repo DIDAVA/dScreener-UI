@@ -371,8 +371,8 @@ export default {
       })
     },
     changeColor(value){
-      if (value > 0) color = 'high--text'
-      else if (value < 0) color = 'low--text'
+      if (value > 0) return 'high--text'
+      else if (value < 0) return'low--text'
       else return 'medium--text'
     },
     vol24mcColor(value){
@@ -387,7 +387,7 @@ export default {
     },
     volatilityColor(value){
       if (value < 5) return 'low--text'
-      else if (value >= 5 && value <= 10)return 'medium--text'
+      else if (value >= 5 && value <= 10) return 'medium--text'
       else return 'high--text'
     },
     buyRsiColor(value){
