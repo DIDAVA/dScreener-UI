@@ -94,7 +94,7 @@
           <v-card-title class="d-flex align-center">
             <v-icon color="white" class="off" :class="pulse ? 'pulse' : ''">mdi-pulse</v-icon>
             <span class="pl-2">Watchlist</span>            
-            <v-select
+            <v-autocomplete
               dense 
               flat
               solo 
@@ -107,11 +107,7 @@
               v-model="config.watchlist" 
               @change="saveConfig()" 
               background-color="transparent"
-            >
-              <template #item="{item}">
-                <div class="c1">{{ item }}</div>
-              </template>
-            </v-select>
+            />
           </v-card-title>
           <v-divider/>
           <v-simple-table v-if="config.watchlist.length" class="transparent" dense>
