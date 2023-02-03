@@ -92,7 +92,8 @@
       <v-col v-if="payload && tv" cols="12">
         <v-card flat color="c2">
           <v-card-title class="d-flex align-center">
-            <span>Watchlist</span>            
+            <v-icon color="white" class="off" :class="pulse ? 'pulse' : ''">mdi-pulse</v-icon>
+            <span class="pl-2">Watchlist</span>            
             <v-select
               dense 
               flat
@@ -111,7 +112,6 @@
                 <div class="c1">{{ item }}</div>
               </template>
             </v-select>
-            <v-icon color="white" class="off" :class="pulse ? 'pulse' : ''">mdi-pulse</v-icon>
           </v-card-title>
           <v-divider/>
           <v-simple-table v-if="config.watchlist.length" class="transparent" dense>
@@ -156,9 +156,8 @@
       <v-col v-if="payload && tv" cols="12">
         <v-card flat color="c2">
           <v-card-title>
-            <span>{{buyList.length}} Buy Oportuninties</span>
-            <v-spacer/>
             <v-icon color="high" class="off" :class="pulse ? 'pulse' : ''">mdi-pulse</v-icon>
+            <span class="pl-2">{{buyList.length}} Buy Oportuninties</span>            
           </v-card-title>
           <v-divider/>
           <v-simple-table v-if="buyList.length" class="transparent" dense>
@@ -204,9 +203,8 @@
       <v-col v-if="payload && tv" cols="12">
         <v-card flat color="c2">
           <v-card-title>
-            <span>{{sellList.length}} Sell Oportuninties</span>
-            <v-spacer/>
             <v-icon color="low" class="off" :class="pulse ? 'pulse' : ''">mdi-pulse</v-icon>
+            <span class="pl-2">{{sellList.length}} Sell Oportuninties</span>
           </v-card-title>
           <v-divider/>
           <v-simple-table v-if="sellList.length" class="transparent" dense>
@@ -261,7 +259,7 @@ export default {
   data: () => ({
     pulse: false,
     config: {
-      timeframe: 'RSI|240',
+      timeframe: 'RSI',
       type: 'spot',
       volatility: 'all',
       watchlist: ['BTC', 'ETH'],
@@ -311,8 +309,8 @@ export default {
       ]
     },
     sort: {
-      buy: 'RSI|240',
-      sell: 'RSI|240'
+      buy: 'RSI',
+      sell: 'RSI'
     }
   }),
   computed: {
@@ -354,9 +352,6 @@ export default {
     tv(){
       this.pulse = true
       setTimeout(() => this.pulse = false, 2000)
-    },
-    config(data){
-      console.log(data)
     }
   },
   methods: {
@@ -404,15 +399,19 @@ export default {
       return `${color}--text`
     },
     buyRsiColor(value){
-      let color = 'high'
-      if (value > 25) color = 'low'
-      else if (value <= 25 && value >= 20) color = 'medium'
+      let color
+      if (value <= 30 && value > 25) color = 'low'
+      else if (value <= 25 && value > 20) color = 'medium'
+      else if (value <= 20) color = 'high'
+      else color = 'low'
       return `${color}--text`
     },
     sellRsiColor(value){
-      let color = 'high'
-      if (value < 75) color = 'low'
-      else if (value >= 75 && value <= 80) color = 'medium'
+      let color
+      if (value >= 70 && value < 75) color = 'low'
+      else if (value >= 75 && value < 80) color = 'medium'
+      else if (value >= 80) color = 'high'
+      else color = 'low'
       return `${color}--text`
     },
     rangeRsiColor(value){
@@ -428,7 +427,11 @@ export default {
   },
   created(){
     const config = localStorage.getItem('dScreener')
-    if (config) this.config = JSON.parse(config)
+    if (config) {
+      this.config = JSON.parse(config)
+      //this.sort.buy = config.timeframe
+      //this.sort.sell = config.timeframe
+    }
   }
 }
 </script>
