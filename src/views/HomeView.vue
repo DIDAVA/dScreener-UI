@@ -371,28 +371,24 @@ export default {
       })
     },
     changeColor(value){
-      let color = 'medium'
-      if (value > 0) color = 'high'
-      else if (value < 0) color = 'low'
-      return `${color}--text`
+      if (value > 0) color = 'high--text'
+      else if (value < 0) color = 'low--text'
+      else return 'medium--text'
     },
     vol24mcColor(value){
-      let color = 'high'
-      if (value < 0.5) color = 'low'
-      else if (value >= 0.5 && value <= 1) color = 'medium'
-      return `${color}--text`
+      if (value < 0.5) return 'low--text'
+      else if (value >= 0.5 && value <= 1) return 'medium--text'
+      else return 'high--text'
     },
     vol24Color(value){
-      let color = 'high'
-      if (value < 25) color = 'low'
-      else if (value >= 25 && value <= 50) color = 'medium'
-      return `${color}--text`
+      if (value < 25) return 'low--text'
+      else if (value >= 25 && value <= 50) return 'medium--text'
+      else return 'high--text'
     },
     volatilityColor(value){
-      let color = 'high'
-      if (value < 5) color = 'low'
-      else if (value >= 5 && value <= 10) color = 'medium'
-      return `${color}--text`
+      if (value < 5) return 'low--text'
+      else if (value >= 5 && value <= 10)return 'medium--text'
+      else return 'high--text'
     },
     buyRsiColor(value){
       if (value <= 30 && value > 25) return 'low--text font-weight-bold'
@@ -418,11 +414,7 @@ export default {
   },
   created(){
     const config = localStorage.getItem('dScreener')
-    if (config) {
-      this.config = JSON.parse(config)
-      //this.sort.buy = config.timeframe
-      //this.sort.sell = config.timeframe
-    }
+    if (config) this.config = JSON.parse(config)
   }
 }
 </script>
