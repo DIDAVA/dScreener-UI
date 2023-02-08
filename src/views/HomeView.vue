@@ -176,7 +176,7 @@
                       <span v-else>--</span>
                     </template>
                     <template v-else-if="header.value == '24h_vol_change_cmc'">
-                      <span v-if="item.c[header.value]" :class="vol24Color(item.c[header.value])">{{item.c[header.value].toFixed(2)}}%</span>
+                      <span v-if="item.c[header.value]" :class="buyVol24Color(item.c[header.value])">{{item.c[header.value].toFixed(2)}}%</span>
                       <span v-else>--</span>
                     </template>
                     <template v-else-if="/^Volatility(.*)$/.test(header.value)">
@@ -223,7 +223,7 @@
                       <span v-else>--</span>
                     </template>
                     <template v-else-if="header.value == '24h_vol_change_cmc'">
-                      <span v-if="item.c[header.value]" :class="vol24Color(item.c[header.value])">{{item.c[header.value].toFixed(2)}}%</span>
+                      <span v-if="item.c[header.value]" :class="sellVol24Color(item.c[header.value])">{{item.c[header.value].toFixed(2)}}%</span>
                       <span v-else>--</span>
                     </template>
                     <template v-else-if="/^Volatility(.*)$/.test(header.value)">
@@ -266,11 +266,11 @@ export default {
       {name: 'Symbol', value: 'base_currency'},
       {name: 'Close', value: 'close'},
       {name: 'Change', value: '24h_close_change|5'},
-      {name: 'Vol/MC', value: '24h_vol_to_market_cap'},
-      {name: 'Vol', value: '24h_vol_change_cmc'},
       {name: 'VLT.D', value: 'Volatility.D'},
       {name: 'VLT.W', value: 'Volatility.W'},
       {name: 'VLT.M', value: 'Volatility.M'},
+      {name: 'Vol', value: '24h_vol_change_cmc'},
+      {name: 'Vol/MC', value: '24h_vol_to_market_cap'},
       {name: 'WRSI', value: 'RSI|WGT'},
       {name: '1m', value: 'RSI|1'},
       {name: '5m', value: 'RSI|5'},
@@ -392,9 +392,14 @@ export default {
       else if (value >= 0.5 && value <= 1) return 'medium--text'
       else return 'high--text'
     },
-    vol24Color(value){
-      if (value < 25) return 'low--text'
-      else if (value >= 25 && value <= 50) return 'medium--text'
+    buyVol24Color(value){
+      if (value < 50) return 'high--text'
+      else if (value >= 50 && value <= 100) return 'medium--text'
+      else return 'low--text'
+    },
+    sellVol24Color(value){
+      if (value < 50) return 'low--text'
+      else if (value >= 50 && value <= 100) return 'medium--text'
       else return 'high--text'
     },
     volatilityColor(value){
