@@ -387,15 +387,20 @@ export default {
       else if (value < 0) return'low--text'
       else return 'medium--text'
     },
+    vol24Color(value){
+      if (value < 50) return 'low--text'
+      else if (value >= 50 && value <= 100) return 'medium--text'
+      else return 'high--text'
+    },
     vol24mcColor(value){
       if (value < 0.5) return 'low--text'
       else if (value >= 0.5 && value <= 1) return 'medium--text'
       else return 'high--text'
     },
     buyVol24Color(value){
-      if (value < 50) return 'high--text'
+      if (value < 50) return 'low--text'
       else if (value >= 50 && value <= 100) return 'medium--text'
-      else return 'low--text'
+      else return 'high--text'
     },
     sellVol24Color(value){
       if (value < 50) return 'low--text'
